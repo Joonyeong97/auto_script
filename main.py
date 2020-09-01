@@ -8,7 +8,7 @@ from selenium.webdriver.common.keys import Keys
 import chromedriver
 
 # Headless
-headless = True
+headless = False
 
 
 # PATH = 'C:/Users/82105/Desktop/Data_Analysis/Python/Develop_Code'
@@ -41,25 +41,42 @@ chrome = chromedriver.generate_chrome(
     download_path=DOWNLOAD_DIR)
 
 # 페이지 요청
-url = 'https://github.com/login'
+url = 'http://edu.kisti.re.kr/index.asp?beurl='
 chrome.get(url)
 time.sleep(3)
-# Login
-elm = chrome.find_element_by_id('login_field')
-elm.send_keys('ljkk1542@naver.com')
-elm = chrome.find_element_by_id('password')
-elm.send_keys('maroon3169!@')
+elm = chrome.find_element_by_id('login_id')
+elm.send_keys('A202001789')
+elm = chrome.find_element_by_id('login_pw')
+elm.send_keys('2020970120')
 elm.send_keys(Keys.RETURN)
 time.sleep(3)
 
-# download
-url = 'https://github.com/yeongtaeck97s/auto_script'
-chrome.get(url)
-time.sleep(3)
+while True:
+    if int(time.strftime('%H%M', time.localtime(time.time())))>=1801:
+        elm = chrome.find_element_by_xpath('//*[@id="content"]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/a[2]')
+        elm.click()
+        break
+    else:
+        elm = chrome.find_element_by_xpath('//*[@id="global_wrap"]/div/h1/a')
+        elm.click()
+        time.sleep(300)
 
-elm = chrome.find_element_by_xpath('//*[@id="js-repo-pjax-container"]/div[2]/div/div[2]/div[1]/div[2]/span/get-repo/details')
-elm.click()
-
-elm = chrome.find_element_by_xpath('//*[@id="js-repo-pjax-container"]/div[2]/div/div[2]/div[1]/div[2]/span/get-repo/details/div/div/div[1]/ul/li[2]')
-elm.click()
-time.sleep(15)
+# Login
+# elm = chrome.find_element_by_id('login_field')
+# elm.send_keys('ljkk1542@naver.com')
+# elm = chrome.find_element_by_id('password')
+# elm.send_keys('maroon3169!@')
+# elm.send_keys(Keys.RETURN)
+# time.sleep(3)
+#
+# # download
+# url = 'https://github.com/yeongtaeck97s/auto_script'
+# chrome.get(url)
+# time.sleep(3)
+#
+# elm = chrome.find_element_by_xpath('//*[@id="js-repo-pjax-container"]/div[2]/div/div[2]/div[1]/div[2]/span/get-repo/details')
+# elm.click()
+#
+# elm = chrome.find_element_by_xpath('//*[@id="js-repo-pjax-container"]/div[2]/div/div[2]/div[1]/div[2]/span/get-repo/details/div/div/div[1]/ul/li[2]')
+# elm.click()
+# time.sleep(15)

@@ -1,6 +1,5 @@
 import atexit
 from selenium import webdriver
-import main
 
 
 def _enable_download_in_headless_chrome(driver: webdriver, download_dir: str):

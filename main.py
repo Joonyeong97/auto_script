@@ -7,7 +7,11 @@ from selenium.webdriver.common.keys import Keys
 
 import chromedriver
 
-PATH = 'C:/Users/82105/Desktop/Data_Analysis/Python/Develop_Code'
+# Headless
+headless = True
+
+
+# PATH = 'C:/Users/82105/Desktop/Data_Analysis/Python/Develop_Code'
 # PROJECT_DIR = str(os.path.dirname(os.path.abspath(PATH)))
 # DOWNLOAD_DIR = f'{PROJECT_DIR}/download'
 # driver_path = f'{PROJECT_DIR}/lib/webDriver/'
@@ -33,7 +37,7 @@ else:
 # 크롬 드라이버 인스턴스 생성
 chrome = chromedriver.generate_chrome(
     driver_path=driver_path,
-    headless=False,
+    headless=headless,
     download_path=DOWNLOAD_DIR)
 
 # 페이지 요청
@@ -58,4 +62,4 @@ elm.click()
 
 elm = chrome.find_element_by_xpath('//*[@id="js-repo-pjax-container"]/div[2]/div/div[2]/div[1]/div[2]/span/get-repo/details/div/div/div[1]/ul/li[2]')
 elm.click()
-time.sleep(8)
+time.sleep(15)

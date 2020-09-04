@@ -43,23 +43,34 @@ chrome = chromedriver.generate_chrome(
 # 페이지 요청
 url = 'http://edu.kisti.re.kr/index.asp?beurl='
 chrome.get(url)
-time.sleep(3)
+chrome.implicitly_wait(30)
 elm = chrome.find_element_by_id('login_id')
 elm.send_keys('A202001789')
 elm = chrome.find_element_by_id('login_pw')
-elm.send_keys('2020970120')
+elm.send_keys('505065')
+time.sleep(2)
 elm.send_keys(Keys.RETURN)
-time.sleep(3)
+
+chrome.implicitly_wait(15)
+
+
 
 while True:
-    if int(time.strftime('%H%M', time.localtime(time.time())))>=1801:
+    if int(time.strftime('%H%M', time.localtime(time.time()))) >= 1805:
         elm = chrome.find_element_by_xpath('//*[@id="content"]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/a[2]')
         elm.click()
+        time.sleep(5)
         break
     else:
-        elm = chrome.find_element_by_xpath('//*[@id="global_wrap"]/div/h1/a')
-        elm.click()
-        time.sleep(300)
+
+        chrome.refresh()
+        # main = chrome.window_handles
+        # for handle in main:
+        #     if handle != main[0]:
+        #         chrome.switch_to_window(handle)
+        #         chrome.close()
+        # chrome.switch_to_window(chrome.window_handles[0])
+        time.sleep(180)
 
 # Login
 # elm = chrome.find_element_by_id('login_field')
